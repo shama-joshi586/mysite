@@ -1,21 +1,100 @@
-.hero
-{  & picture{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-  & h2{
-    text-align: center;
-    color: white;
-    top: 50%;
-    left:50%;
-    
-  
-
+/* HERO BASE */
+.hero {
   position: relative;
-  height: 80vh;
+  min-height: 80vh;
   overflow: hidden;
+  color: #fff;
+}
 
+/* IMAGE */
+.hero picture,
+.hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
+
+/* OVERLAY */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 2;
 }
+
+/* ✅ TEXT CONTAINER — THIS IS THE KEY FIX */
+.hero > div > div > div {
+  position: relative;
+  z-index: 3;
+  padding: 6rem 2rem;
+  max-width: 1200px;
+}
+
+/* Remove default p spacing */
+.hero p {
+  margin: 0;
+}
+
+.hero h2,
+.hero h4,
+.hero h5 {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+.hero > div > div > div {
+  position: relative;
+  z-index: 3;
+  min-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical */
+  align-items: center;       /* horizontal */
+
+  text-align: center;
+  padding: 2rem;
+}
+
+
+/* STYLES */
+.hero h2 {
+  padding-top: 10%;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+/* CTA wrapper */
+.hero h5 {
+  margin: 0;
+  display: flex;               /* 🔑 THIS IS THE KEY */
+  justify-content: center;     /* center the link */
+}
+
+/* CTA button */
+.hero h5 a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  background:#69b5f8 ;
+  color: hsla(0, 20%, 99%, 0.971);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 400;
+}
+.hero h5 a:hover,
+.hero h5 a:focus {
+  background: #3d4ac7;      /* darker yellow */
+  color: hsl(200, 60%, 99%);
+  transform: translateY(-2px);
 }
