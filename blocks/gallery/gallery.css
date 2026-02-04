@@ -1,0 +1,90 @@
+/* =========================
+   GALLERY BLOCK
+========================= */
+
+.gallery {
+  padding: 70px 48px;
+  background: #ffffff;
+}
+
+/* LIMIT WIDTH */
+.gallery > div {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* -------------------------
+   TITLE
+-------------------------- */
+.gallery > div > div:first-child {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* -------------------------
+   GRID
+-------------------------- */
+.gallery > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 15px;
+}
+
+/* -------------------------
+   IMAGE CARD
+-------------------------- */
+.gallery picture {
+  display: block;
+  width: 210px;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f5f5;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* IMAGE */
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -------------------------
+   HOVER EFFECT (as requested)
+-------------------------- */
+.gallery picture:hover {
+  transform: translateY(-6px) scale(1.1);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+/* -------------------------
+   RESPONSIVE
+-------------------------- */
+@media (max-width: 1200px) {
+  .gallery > div {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 50px 24px;
+  }
+
+  .gallery > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery > div {
+    grid-template-columns: 1fr;
+  }
+}

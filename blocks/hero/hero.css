@@ -76,8 +76,8 @@
 /* CTA wrapper */
 .hero h5 {
   margin: 0;
-  display: flex;               /* 🔑 THIS IS THE KEY */
-  justify-content: center;     /* center the link */
+  display: flex;              
+  justify-content: center;     
 }
 
 /* CTA button */
@@ -86,15 +86,16 @@
   align-items: center;
   justify-content: center;
   padding: 0.75rem 2rem;
-  background:#69b5f8 ;
+  background:#3d4ac7;  
   color: hsla(0, 20%, 99%, 0.971);
   border-radius: 4px;
   text-decoration: none;
   font-weight: 400;
+  /* border-radius: 8; */
 }
 .hero h5 a:hover,
 .hero h5 a:focus {
-  background: #3d4ac7;      /* darker yellow */
+  background:  rgb(18, 13, 177) ;   /* darker yellow */
   color: hsl(200, 60%, 99%);
   transform: translateY(-2px);
 }
