@@ -3,7 +3,7 @@ export default function decorate(block) {
 
   if (cta) {
     cta.addEventListener('click', () => {
-      window.location.href = '/about'; // change to your target URL
+      window.location.href = '/about'; 
     });
   }
 }

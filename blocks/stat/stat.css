@@ -1,0 +1,63 @@
+/* STATS SECTION */
+.stat {
+  background: #000;
+  color: #fff;
+  padding: 80px 20px 100px; /* extra bottom to attach footer */
+}
+
+/* Inner wrapper */
+.stat > div {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 0;
+}
+
+/* Each stat item */
+.stat > div > div {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat > div > div:hover {
+  transform: translateY(-6px);
+}
+
+/* NUMBER */
+.stat h3 {
+  font-size: 32px;
+  font-weight: 700;
+  /* padding: 0%; */
+  margin: 0 0 6px;
+  line-height: 1;
+}
+
+/* LABEL */
+.stat h4 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.6px;
+  opacity: 0.85;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .stat > div {
+    gap: 60px;
+  }
+
+  .stat h3 {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .stat > div {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

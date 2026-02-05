@@ -1,4 +1,4 @@
-/* HERO BASE */
+
 .hero {
   position: relative;
   min-height: 80vh;
@@ -6,7 +6,7 @@
   color: #fff;
 }
 
-/* IMAGE */
+
 .hero picture,
 .hero img {
   position: absolute;
@@ -17,16 +17,16 @@
   z-index: 1;
 }
 
-/* OVERLAY */
+
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.5);
   z-index: 2;
+  padding: 0;
 }
 
-/* ✅ TEXT CONTAINER — THIS IS THE KEY FIX */
 .hero > div > div > div {
   position: relative;
   z-index: 3;
@@ -34,7 +34,7 @@
   max-width: 1200px;
 }
 
-/* Remove default p spacing */
+
 .hero p {
   margin: 0;
 }
@@ -53,15 +53,15 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* vertical */
-  align-items: center;       /* horizontal */
+  justify-content: center;  
+  align-items: center;      
 
   text-align: center;
   padding: 2rem;
 }
 
 
-/* STYLES */
+
 .hero h2 {
   padding-top: 10%;
   font-size: 3rem;
@@ -73,14 +73,14 @@
   font-weight: 400;
   margin-bottom: 2rem;
 }
-/* CTA wrapper */
+
 .hero h5 {
   margin: 0;
   display: flex;              
   justify-content: center;     
 }
 
-/* CTA button */
+
 .hero h5 a {
   display: inline-flex;
   align-items: center;
@@ -95,7 +95,7 @@
 }
 .hero h5 a:hover,
 .hero h5 a:focus {
-  background:  rgb(18, 13, 177) ;   /* darker yellow */
+  background:  rgb(18, 13, 177) ;   
   color: hsl(200, 60%, 99%);
   transform: translateY(-2px);
 }
