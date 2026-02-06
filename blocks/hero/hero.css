@@ -4,8 +4,8 @@
   min-height: 80vh;
   overflow: hidden;
   color: #fff;
+  width: 100%;
 }
-
 
 .hero picture,
 .hero img {

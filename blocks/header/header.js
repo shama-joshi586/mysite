@@ -44,7 +44,7 @@ export default async function decorate(block) {
 
   // Navigation items with icons
   const navItems = [
-    { text: 'PHOTO PALACE STUDIOS', isBrand: true, icon: 'ri-camera-lens-line' },
+    { text: 'PHOTO PALACE STUDIOS', isBrand: true, icon: 'ri-landscape-fill' },
     { text: 'Home', href: '#home', icon: 'ri-home-line' },
     { text: 'Services', href: '#services', icon: 'ri-service-line' },
     { text: 'Gallery', href: '#gallery', icon: 'ri-gallery-line' },

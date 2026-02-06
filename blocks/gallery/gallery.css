@@ -3,7 +3,6 @@
   padding: 60px 20px;
 }
 
-/* Container with max-width and grid */
 .gallery > div {
   max-width: 1440px;
   margin: 0 auto;
@@ -12,7 +11,6 @@
   gap: 20px;
 }
 
-/* Heading - first child */
 .gallery > div > div:first-child {
   grid-column: 1 / -1;
   text-align: center;
@@ -21,7 +19,7 @@
   margin-bottom: 40px;
 }
 
-/* Image containers */
+/* Image */
 .gallery > div > div {
   width: 100%;
 }
@@ -50,12 +48,14 @@
   z-index: 2;
 }
 
+/* Tablet - 4 columns */
 @media (max-width: 1200px) {
   .gallery > div {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
+/* Small Tablet - 2 columns */
 @media (max-width: 768px) {
   .gallery {
     padding: 50px 24px;
@@ -63,11 +63,32 @@
 
   .gallery > div {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .gallery > div > div:first-child {
+    font-size: 28px;
+    margin-bottom: 30px;
   }
 }
 
+
 @media (max-width: 480px) {
+  .gallery {
+    padding: 40px 16px;
+  }
+
   .gallery > div {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gallery > div > div:first-child {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .gallery picture {
+    aspect-ratio: 4 / 3;
   }
 }

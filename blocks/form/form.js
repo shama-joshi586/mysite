@@ -11,7 +11,6 @@ export default async function decorate(block) {
   const formFields = {};
   const rows = [...block.children];
   
-  // Parse form structure
   rows.forEach((row) => {
     const cells = [...row.children];
     if (cells.length >= 3) {
@@ -26,7 +25,7 @@ export default async function decorate(block) {
           formFields[field].required = true;
         }
       } else if (type === 'submit') {
-        // Skip, we'll add submit button at the end
+        
       } else {
         formFields[field] = {
           name: field,
@@ -38,20 +37,20 @@ export default async function decorate(block) {
     }
   });
 
-  // Create form fields
+
   Object.values(formFields).forEach(fieldData => {
     const wrapper = createFormField(fieldData);
     form.appendChild(wrapper);
   });
 
-  // Add submit button at the end
+  
   const button = document.createElement('button');
   button.type = 'submit';
   button.textContent = 'Submit';
   button.className = 'form-submit';
   form.appendChild(button);
 
-  // Setup validation
+
   setupValidation(form);
 
   block.textContent = '';
@@ -68,20 +67,21 @@ function createFormField(fieldData) {
     input = document.createElement('textarea');
     input.rows = 5;
     input.id = 'eventDetails';
+    input.name = 'eventDetails';
   } else {
     input = document.createElement('input');
     input.type = fieldData.type;
     input.id = fieldData.name;
+    input.name = fieldData.name;
   }
 
-  input.name = fieldData.name;
   input.placeholder = fieldData.label + (fieldData.required ? ' *' : '');
   
   if (fieldData.required) {
     input.required = true;
   }
 
-  // Set min date for date input
+  // min date 
   if (fieldData.type === 'date') {
     const today = new Date().toISOString().split("T")[0];
     input.setAttribute("min", today);
@@ -104,12 +104,11 @@ function setupValidation(form) {
   const dateInput = form.querySelector('#date');
   const eventDetails = form.querySelector('#eventDetails');
 
-  // Phone number - only digits, max 10
+  // max-10
   if (phoneInput) {
     phoneInput.addEventListener('input', function(e) {
       // Remove non-digit characters
       this.value = this.value.replace(/\D/g, '');
-      // Limit to 10 digits
       if (this.value.length > 10) {
         this.value = this.value.slice(0, 10);
       }
@@ -118,34 +117,36 @@ function setupValidation(form) {
     phoneInput.addEventListener('blur', phoneValidate);
   }
 
-  // Name validation
+  // Name input - prevent digits
   if (nameInput) {
-    nameInput.addEventListener('input', nameValidate);
+    nameInput.addEventListener('input', function(e) {
+      // Remove any digits from the input
+      this.value = this.value.replace(/[0-9]/g, '');
+      nameValidate();
+    });
     nameInput.addEventListener('blur', nameValidate);
   }
 
-  // Email validation
   if (emailInput) {
     emailInput.addEventListener('input', emailValidate);
     emailInput.addEventListener('blur', emailValidate);
   }
 
-  // Date validation
   if (dateInput) {
     dateInput.addEventListener('input', dateValidate);
     dateInput.addEventListener('blur', dateValidate);
   }
 
-  // Event details validation
+  // Textarea validation
   if (eventDetails) {
     eventDetails.addEventListener('input', eventDetailsValidate);
     eventDetails.addEventListener('blur', eventDetailsValidate);
   }
 
-  // Form submission
+  // submit
   form.addEventListener('submit', handleSubmit);
 
-  // Validation functions
+  // Validation 
   function nameValidate() {
     let name = nameInput.value.trim();
     if (name === "") {
@@ -197,16 +198,16 @@ function setupValidation(form) {
     const wordCount = words.length;
 
     if (text === "") {
-      showError("eventError", "Event details cannot be empty");
+      showError("eventDetailsError", "Event details cannot be empty");
       return false;
     }
 
-    if (wordCount > 200) {
-      showError("eventError", "Word limit is 200 words.");
+    if (wordCount > 50) {
+      showError("eventDetailsError", "Word limit is 50 words.");
       return false;
     }
 
-    clearError("eventError");
+    clearError("eventDetailsError");
     return true;
   }
 
@@ -235,7 +236,7 @@ function setupValidation(form) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Check if all required fields are filled
+   
     if (
       nameInput.value.trim() === "" ||
       phoneInput.value.trim() === "" ||
@@ -247,13 +248,13 @@ function setupValidation(form) {
       return;
     }
 
-    // Validate event details first
+  
     if (!eventDetailsValidate()) {
       eventDetails.focus();
       return;
     }
 
-    // Validate all other fields
+    
     const isValid =
       nameValidate() &&
       phoneValidate() &&
@@ -271,11 +272,11 @@ function setupValidation(form) {
     alert("Form submitted successfully");
     form.reset();
     
-    // Clear all errors
+  
     clearError("nameError");
     clearError("phoneError");
     clearError("emailError");
     clearError("dateError");
-    clearError("eventError");
+    clearError("eventDetailsError");
   }
 }
