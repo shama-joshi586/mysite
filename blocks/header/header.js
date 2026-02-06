@@ -1,24 +1,17 @@
-function normalizeNavSections(nav) {
-  const navSections = nav.querySelector('.nav-sections');
-  if (!navSections) return;
-
-  let ul = navSections.querySelector('ul');
-  if (!ul) {
-    ul = document.createElement('ul');
-    navSections.append(ul);
-  }
-
-  navSections.querySelectorAll('a, span').forEach((item) => {
-    if (item.closest('li')) return;
-    const li = document.createElement('li');
-    li.append(item);
-    ul.append(li);
-  });
-}
-import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { getMetadata } from '../../scripts/aem.js';
 
 const isDesktop = window.matchMedia('(min-width: 900px)');
+
+// Load Remix Icon CSS
+function loadRemixIcon() {
+  if (!document.querySelector('link[href*="remixicon"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css';
+    document.head.appendChild(link);
+  }
+}
 
 function toggleMenu(nav) {
   const expanded = nav.getAttribute('aria-expanded') === 'true';
@@ -27,61 +20,56 @@ function toggleMenu(nav) {
 }
 
 export default async function decorate(block) {
-  const navMeta = getMetadata('nav');
-  const navPath = navMeta
-    ? new URL(navMeta, window.location).pathname
-    : '/nav';
+  // Load Remix Icon CSS first
+  loadRemixIcon();
 
+  const navMeta = getMetadata('nav');
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
+
   block.textContent = '';
 
   const nav = document.createElement('nav');
   nav.id = 'nav';
   nav.setAttribute('aria-expanded', 'false');
 
-  while (fragment.firstElementChild) {
-    nav.append(fragment.firstElementChild);
-  }
+  const brand = document.createElement('div');
+  brand.className = 'nav-brand';
 
-  /* Assign DA slots */
-  ['brand', 'sections', 'tools'].forEach((name, i) => {
-    nav.children[i]?.classList.add(`nav-${name}`);
+  const sections = document.createElement('div');
+  sections.className = 'nav-sections';
+
+  const tools = document.createElement('div');
+  tools.className = 'nav-tools';
+
+  // Navigation items with icons
+  const navItems = [
+    { text: 'PHOTO PALACE STUDIOS', isBrand: true, icon: 'ri-camera-lens-line' },
+    { text: 'Home', href: '#home', icon: 'ri-home-line' },
+    { text: 'Services', href: '#services', icon: 'ri-service-line' },
+    { text: 'Gallery', href: '#gallery', icon: 'ri-gallery-line' },
+    { text: 'Contact', href: '#contact', icon: 'ri-phone-line' },
+    { text: 'Feedback', href: '#feedback', icon: 'ri-feedback-line', isButton: true }
+  ];
+
+  navItems.forEach((item) => {
+    if (item.isBrand) {
+      brand.innerHTML = `<i class="${item.icon}"></i><span>${item.text}</span>`;
+    } else if (item.isButton) {
+      const a = document.createElement('a');
+      a.innerHTML = `<i class="${item.icon}"></i><span>${item.text}</span>`;
+      a.href = item.href;
+      a.className = 'nav-feedback-btn';
+      tools.append(a);
+    } else {
+      const a = document.createElement('a');
+      a.innerHTML = `<i class="${item.icon}"></i><span>${item.text}</span>`;
+      a.href = item.href;
+      a.className = 'nav-link';
+      sections.append(a);
+    }
   });
 
-  /* Feedback → button */
-  const toolLink = nav.querySelector('.nav-tools a');
-  if (toolLink) {
-    toolLink.classList.add('button', 'primary');
-  }
-
-  /* Remove h2 and h4 tags, keep text content */
-  const navBrand = nav.querySelector('.nav-brand');
-  if (navBrand) {
-    const h2 = navBrand.querySelector('h2');
-    if (h2) {
-      const logoText = document.createElement('div');
-      logoText.className = 'logo';
-      logoText.textContent = h2.textContent;
-      h2.replaceWith(logoText);
-    }
-  }
-
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    const navLinks = navSections.querySelectorAll('h4');
-    navLinks.forEach(h4 => {
-      const link = h4.querySelector('a');
-      if (link) {
-        h4.replaceWith(link);
-      } else {
-        const span = document.createElement('span');
-        span.textContent = h4.textContent;
-        h4.replaceWith(span);
-      }
-    });
-  }
-
-  /* Hamburger */
   const hamburger = document.createElement('div');
   hamburger.className = 'nav-hamburger';
   hamburger.innerHTML = `
@@ -90,12 +78,12 @@ export default async function decorate(block) {
     </button>
   `;
   hamburger.addEventListener('click', () => toggleMenu(nav));
-  nav.prepend(hamburger);
+
+  nav.append(hamburger, brand, sections, tools);
 
   const wrapper = document.createElement('div');
   wrapper.className = 'nav-wrapper';
   wrapper.append(nav);
-
   block.append(wrapper);
 
   isDesktop.addEventListener('change', () => {
