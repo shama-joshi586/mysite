@@ -1,4 +1,4 @@
-/* ================= NAV ================= */
+
 
 header {
   position: sticky;
@@ -21,7 +21,7 @@ header {
   color: #fff;
 }
 
-/* Brand */
+
 .nav-brand {
   font-size: 16px;
   font-weight: 700;
@@ -37,7 +37,7 @@ header {
   font-size: 24px;
 }
 
-/* Center links */
+
 .nav-sections {
   display: flex;
   gap: 48px;

@@ -1,125 +1,212 @@
+/* =========================
+   GLOBAL FIXES
+========================= */
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal overflow */
+}
+
+/* =========================
+   CARD / BACKGROUND
+========================= */
+
 .card {
+  position: relative;
+  min-height: 80vh;
+  margin: 0;
+  padding: 0;
+
+  /* full-width breakout without overflow */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+}
+
+.card-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   BACKGROUND IMAGE
+========================= */
+
+.card-background {
   position: relative;
   min-height: 90vh;
   padding: 120px 80px;
   overflow: hidden;
 }
 
-
-.card > div:first-child img {
+.background-image {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* filter: brightness(0.85); */
   z-index: 1;
 }
 
-/* hide extra auto-generated image wrappers */
-.card > div:first-child > div:not(:first-child) {
-  display: none;
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/*Overlay*/
-.card::before {
-  content: "";
+/* =========================
+   OVERLAY
+========================= */
+
+.card-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.25);
   z-index: 2;
-  /* padding-top: 0; */
 }
 
-/* our services heading*/
-.card > div:first-child h2 {
+/* =========================
+   CONTENT
+========================= */
+
+.services-container {
   position: relative;
   z-index: 3;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.services-title {
   text-align: center;
   font-size: 42px;
   font-weight: 700;
   color: #0a0a0a;
-  margin-bottom: 60px;
+  margin: 0 0 60px 0;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
 }
 
-/* hr*/
-.card > div:first-child h2::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: rgba(254, 253, 253, 0.6);
-  /* margin: 16px auto 0; */
-}
+/* =========================
+   SERVICES GRID
+========================= */
 
-/* card grid */
-.card > div:last-child {
-  position: relative;
-  z-index: 3;
+.services-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
 
-/* card sepertae */
-.card > div:last-child > div {
+.service-card {
   background: rgba(255, 255, 255, 0.88);
-  padding: 48px 32px;
   border-radius: 16px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  transition:
-    background 0.35s ease,
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  overflow: hidden;
+  transition: transform 0.35s ease,
+              background 0.35s ease,
+              box-shadow 0.35s ease;
 }
 
-/* card hover */
-.card > div:last-child > div:hover {
+.service-card:hover {
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
-/* icon */
-.service-icon {
-  font-size: 32px;
-  margin-bottom: 18px;
-  display: block;
-  color: #111;
+/* =========================
+   CARD CONTENT
+========================= */
+
+.card-content {
+  padding: 48px 32px;
+  text-align: center;
 }
 
-/* text */
-.card h2 {
+.card-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-title {
+  margin-bottom: 12px;
+}
+
+.card-title h3 {
   font-size: 24px;
-  margin-bottom: 10px;
+  font-weight: 600;
   color: #111;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.card h4 {
+.card-description p {
   font-size: 15px;
   font-weight: 400;
+  color: #333;
   opacity: 0.85;
-  color: #111;
+  margin: 0;
+  line-height: 1.5;
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+  .services-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
 
 @media (max-width: 900px) {
-  .card {
+  .card-background {
     padding: 80px 24px;
   }
 
-  .card > div:first-child h2 {
+  .services-title {
     font-size: 32px;
     margin-bottom: 40px;
   }
 
-  .card > div:last-child {
+  .services-list {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card-content {
+    padding: 36px 24px;
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+  }
+
+  .card-title h3 {
+    font-size: 20px;
+  }
+
+  .card-description p {
+    font-size: 14px;
   }
 }

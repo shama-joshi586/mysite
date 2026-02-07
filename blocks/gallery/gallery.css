@@ -1,6 +1,9 @@
 .gallery {
   background: #ffffff;
   padding: 60px 20px;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow-x: hidden;
 }
 
 .gallery > div {

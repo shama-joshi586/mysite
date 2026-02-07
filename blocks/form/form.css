@@ -1,9 +1,14 @@
+.form-wrapper{
+    background: black;
+}
+
 .form {
   max-width: 400px;
   margin: 60px auto;
   padding: 40px;
-  background: rgb(16, 15, 15);
+  background: black;
   border-radius: 10px;
+  
 }
 
 .form-title {
@@ -89,7 +94,7 @@
 
 .form-field input[type="date"]:focus,
 .form-field input[type="date"]:valid {
-  color: #333;
+  color:black;
 }
 
 /* Phone input - remove spinner arrows */

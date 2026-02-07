@@ -81,6 +81,7 @@ body {
 }
 
 body.appear {
+ background: black;
   display: block;
 }
 
