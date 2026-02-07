@@ -7,16 +7,14 @@ footer {
   padding: 15px;
   background: black;
   color: white;
-}
-
-footer .footer > div {
+  .footer > div {
   margin: auto;
   max-width: 1200px;
   padding: 40px 24px 24px;
-}
-
-footer .footer p {
+   p {
   margin: 0;
+}
+}
 }
 
 @media (width >= 900px) {

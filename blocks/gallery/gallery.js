@@ -1,5 +1,6 @@
 export default function decorate(block) {
   block.classList.add('gallery');
+  block.id = 'gallery'; 
 
   const children = [...block.children];
 

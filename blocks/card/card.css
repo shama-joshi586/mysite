@@ -1,6 +1,4 @@
-/* =========================
-   GLOBAL FIXES
-========================= */
+
 
 *,
 *::before,
@@ -12,201 +10,182 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* prevent horizontal overflow */
+  overflow-x: hidden; 
 }
-
-/* =========================
-   CARD / BACKGROUND
-========================= */
 
 .card {
   position: relative;
   min-height: 80vh;
   margin: 0;
   padding: 0;
-
-  /* full-width breakout without overflow */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
   overflow: hidden;
-}
 
-.card-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-/* =========================
-   BACKGROUND IMAGE
-========================= */
-
-.card-background {
-  position: relative;
-  min-height: 90vh;
-  padding: 120px 80px;
-  overflow: hidden;
-}
-
-.background-image {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-
-.background-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* =========================
-   OVERLAY
-========================= */
-
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 2;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.services-container {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.services-title {
-  text-align: center;
-  font-size: 42px;
-  font-weight: 700;
-  color: #0a0a0a;
-  margin: 0 0 60px 0;
-  padding-bottom: 20px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-/* =========================
-   SERVICES GRID
-========================= */
-
-.services-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-}
-
-.service-card {
-  background: rgba(255, 255, 255, 0.88);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.35s ease,
-              background 0.35s ease,
-              box-shadow 0.35s ease;
-}
-
-.service-card:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-8px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-}
-
-/* =========================
-   CARD CONTENT
-========================= */
-
-.card-content {
-  padding: 48px 32px;
-  text-align: center;
-}
-
-.card-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.card-title {
-  margin-bottom: 12px;
-}
-
-.card-title h3 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #111;
-  margin: 0;
-  line-height: 1.3;
-}
-
-.card-description p {
-  font-size: 15px;
-  font-weight: 400;
-  color: #333;
-  opacity: 0.85;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1200px) {
-  .services-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+  .card-wrapper {
+    width: 100%;
+    height: 100%;
   }
-}
 
-@media (max-width: 900px) {
   .card-background {
-    padding: 80px 24px;
+    position: relative;
+    min-height: 90vh;
+    padding: 120px 80px;
+    overflow: hidden;
+
+    .background-image {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+     }
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 2;
+    }
+
+    .services-container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+
+      .services-title {
+        text-align: center;
+        font-size: 42px;
+        font-weight: 700;
+        color: #0a0a0a;
+        margin: 0 0 60px 0;
+        padding-bottom: 20px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .services-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+
+        .service-card {
+          background: rgba(255, 255, 255, 0.88);
+          border-radius: 16px;
+          overflow: hidden;
+          transition: transform 0.35s ease,
+                      background 0.35s ease,
+                      box-shadow 0.35s ease;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+          }
+
+          .card-content {
+            padding: 48px 32px;
+            text-align: center;
+
+            .card-icon {
+              width: 64px;
+              height: 64px;
+              margin: 0 auto 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+
+            .card-title {
+              margin-bottom: 12px;
+
+              h3 {
+                font-size: 24px;
+                font-weight: 600;
+                color: #111;
+                margin: 0;
+                line-height: 1.3;
+              }
+            }
+
+            .card-description {
+              p {
+                font-size: 15px;
+                font-weight: 400;
+                color: #333;
+                opacity: 0.85;
+                margin: 0;
+                line-height: 1.5;
+              }
+          }
+      }
+      }
+    }    }
   }
 
-  .services-title {
-    font-size: 32px;
-    margin-bottom: 40px;
+ 
+  @media (max-width: 1200px) {
+    .services-container {
+      .services-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+    }
   }
 
-  .services-list {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
+  @media (max-width: 900px) {
+    .card-background {
+      padding: 80px 24px;
 
-  .card-content {
-    padding: 36px 24px;
-  }
+      .services-container {
+        .services-title {
+          font-size: 32px;
+          margin-bottom: 40px;
+        }
 
-  .card-icon {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 20px;
-  }
+        .services-list {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
 
-  .card-title h3 {
-    font-size: 20px;
-  }
+        .service-card {
+          .card-content {
+            padding: 36px 24px;
 
-  .card-description p {
-    font-size: 14px;
+            .card-icon {
+              width: 56px;
+              height: 56px;
+              margin-bottom: 20px;
+            }
+
+            .card-title {
+              h3 {
+                font-size: 20px;
+              }
+            }
+
+            .card-description {
+              p {
+                font-size: 14px;
+             }
+          }
+      }
+        }
+     }
+}
   }
 }

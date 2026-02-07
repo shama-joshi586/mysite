@@ -1,4 +1,6 @@
 export default async function decorate(block) {
+    block.classList.add('contact');
+  block.id = 'contact'; 
   const formTitle = document.createElement('h2');
   formTitle.textContent = 'Book Session';
   formTitle.className = 'form-title';

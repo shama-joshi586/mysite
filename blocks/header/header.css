@@ -7,7 +7,7 @@ header {
 }
 
 .nav-wrapper {
-  background: #1a1a1a;
+  background: black;
   border-bottom: 1px solid #333;
 }
 
@@ -31,11 +31,12 @@ header {
   align-items: center;
   gap: 10px;
   color: #fff;
-}
-
-.nav-brand i {
+  i {
   font-size: 24px;
 }
+}
+
+
 
 
 .nav-sections {
@@ -58,17 +59,13 @@ header {
   transition: all 0.2s ease;
   font-weight: 400;
   position: relative;
-}
-
-.nav-link i {
+  i {
   font-size: 18px;
 }
-
-.nav-link:hover {
+&:hover {
   color: #5b9dd9;
 }
-
-.nav-link::after {
+&::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -78,15 +75,17 @@ header {
   /* background: #5b9dd9; */
   transition: width 0.3s ease;
 }
-
-.nav-link:hover::after {
+&:hover::after {
   width: 100%;
 }
+
+}
+
 
 /* Feedback button */
 .nav-tools {
   display: flex;
-  /* color: #4a8bc4; */
+  color: #4a8bc4;
 }
 
 .nav-feedback-btn {
@@ -102,29 +101,28 @@ header {
   font-weight: 500;
   transition: all 0.2s ease;
   /* box-shadow: 0 2px 8px rgba(91, 157, 217, 0.3); */
-}
-
-.nav-feedback-btn i {
+  i {
   font-size: 18px;
 }
-
-.nav-feedback-btn:hover {
+&:hover {
   background: #4a8bc4;
   box-shadow: 0 4px 12px rgba(91, 157, 217, 0.4);
   /* transform: translateY(-1px); */
 }
-
-/* Hamburger */
-.nav-hamburger {
-  display: none;
 }
 
-.nav-hamburger button {
+
+.nav-hamburger {
+  display: none;
+   button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
 }
+}
+
+
 
 .nav-hamburger-icon,
 .nav-hamburger-icon::before,

@@ -3,10 +3,7 @@
   background: #000;
   color: #fff;
   padding: 80px 20px 100px;
-}
-
-
-.stat > div {
+  > div {
   display: flex;
   justify-content: center;
   gap: 100px;
@@ -14,34 +11,32 @@
   margin: 0 auto;
   height: 0;
 }
-
-
-.stat > div > div {
+ > div > div {
   text-align: center;
   transition: transform 0.3s ease;
-}
-
-.stat > div > div:hover {
+  &:hover {
   transform: translateY(-6px);
 }
 
-
-.stat h3 {
+}
+h3 {
   font-size: 32px;
   font-weight: 700;
   /* padding: 0%; */
   margin: 0 0 6px;
   line-height: 1;
 }
-
-
-.stat h4 {
+h4 {
   font-size: 20px;
   font-weight: 400;
   margin: 0;
   letter-spacing: 0.6px;
   opacity: 0.85;
 }
+
+}
+
+
 
 @media (max-width: 900px) {
   .stat > div {
